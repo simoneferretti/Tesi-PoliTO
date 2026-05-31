@@ -1,0 +1,38 @@
+symbol,yahoo_ticker,name,sector
+A2A,A2A.MI,A2A,Utilities
+AMP,AMP.MI,Amplifon,Healthcare
+AZM,AZM.MI,Azimut,Financial Services
+BAMI,BAMI.MI,Banco BPM,Banking
+BC,BC.MI,Brunello Cucinelli,Consumer Goods
+BMED,BMED.MI,Banca Mediolanum,Financial Services
+BMPS,BMPS.MI,Banca Monte dei Paschi di Siena,Banking
+BPE,BPE.MI,BPER Banca,Banking
+BZU,BZU.MI,Buzzi,Construction Materials
+CPR,CPR.MI,Campari,Food Beverage
+DIA,DIA.MI,Diasorin,Healthcare
+ENEL,ENEL.MI,Enel,Utilities
+ENI,ENI.MI,ENI,Energy
+ERG,ERG.MI,ERG,Energy
+FBK,FBK.MI,FinecoBank,Banking
+G,G.MI,Assicurazioni Generali,Insurance
+HER,HER.MI,Hera,Utilities
+IG,IG.MI,Italgas,Utilities
+INW,INW.MI,Inwit,Telecommunications
+IP,IP.MI,Interpump,Industrials
+ISP,ISP.MI,Intesa Sanpaolo,Banking
+LDO,LDO.MI,Leonardo,Industrials
+MB,MB.MI,Mediobanca,Banking
+MONC,MONC.MI,Moncler,Consumer Goods
+PRY,PRY.MI,Prysmian,Industrials
+PST,PST.MI,Poste Italiane,Financial Services
+RACE,RACE.MI,Ferrari,Automobiles
+REC,REC.MI,Recordati,Healthcare
+SPM,SPM.MI,Saipem,Energy
+SRG,SRG.MI,Snam,Utilities
+STLAM,STLAM.MI,Stellantis,Automobiles
+STM,STMMI.MI,STMicroelectronics,Technology
+TEN,TEN.MI,Tenaris,Energy
+TIT,TIT.MI,Telecom Italia,Telecommunications
+TRN,TRN.MI,Terna,Utilities
+UCG,UCG.MI,UniCredit,Banking
+UNI,UNI.MI,Unipol,Insurance
