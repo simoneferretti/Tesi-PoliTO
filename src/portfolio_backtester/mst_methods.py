@@ -10,8 +10,9 @@ def correlation_to_distance(corr_matrix: pd.DataFrame) -> pd.DataFrame:
     d_ij = sqrt(2 * (1 - rho_ij))
     """
 
-    distance_matrix = np.sqrt(2 * (1 - corr_matrix))
-    np.fill_diagonal(distance_matrix.values, 0)
+    arr = np.sqrt(2 * (1 - corr_matrix.to_numpy(dtype=float, copy=True)))
+    np.fill_diagonal(arr, 0)  
+    distance_matrix = pd.DataFrame(arr, index=corr_matrix.index, columns=corr_matrix.columns)
 
     return distance_matrix
 
@@ -175,6 +176,9 @@ def build_method3_extended_symbols(
     returns_block_2 = symbols_returns.copy()
     money_block = symbols_money.copy()
 
+
+    # mettiamo un indice alfanumerico invece delle date, altrimenti avrei conflitti di chiavi duplicate
+    # perderemo le date, ma a noi interessa solo l'ordine
     returns_block_1.index = [
         f"r1_{i}" for i in range(len(returns_block_1))
     ]
@@ -205,23 +209,28 @@ def build_method3_mst(
     MST costruito su rendimenti simbolizzati + controvalore simbolizzato.
     """
 
+    # intersezione fra le colonne dei due dataframe e li riordino alfabeticamente
     common_symbols = sorted(
         set(returns_window.columns).intersection(money_window.columns)
     )
 
+    # faccio l'intersezione anche per le date
     common_dates = returns_window.index.intersection(money_window.index)
 
+    # sovrascrivo i dataframe originali con i sotto data-frame appena ottenuti
     returns_window = returns_window.loc[common_dates, common_symbols]
     money_window = money_window.loc[common_dates, common_symbols]
 
     symbols_returns = symbolize_three_states(returns_window)
     symbols_money = symbolize_three_states(money_window)
 
+    # creo un nuovo dataframe "triplicato" con due volte i rendimenti e una volta il controvalore
     extended_symbols = build_method3_extended_symbols(
         symbols_returns=symbols_returns,
         symbols_money=symbols_money
     )
 
+    # costruisco MST
     return build_mst_from_matrix(
         extended_symbols,
         min_periods=min_periods

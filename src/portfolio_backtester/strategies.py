@@ -6,6 +6,8 @@ def normalize_weights(weights: pd.Series) -> pd.Series:
     """
     Normalizza una serie di pesi, rimuovendo valori mancanti,
     infiniti o non positivi.
+    Lo useremo, ad esempio per normalizzare valori come il grado di un nodo,
+    usato nella costruzione di un portafoglio.
     """
 
     weights = weights.astype(float)
@@ -27,20 +29,21 @@ def get_latest_market_cap(
 ) -> pd.Series:
     """
     Prende l'ultima capitalizzazione disponibile prima o alla data indicata.
+    Utilizzata prima di investire.
     """
 
-    date = pd.Timestamp(date)
+    date = pd.Timestamp(date) # prendiamo la data
 
     available_dates = market_cap_matrix.index[
         market_cap_matrix.index <= date
-    ]
+    ] # selezioniamo le date non successive
 
     if len(available_dates) == 0:
         return pd.Series(dtype=float)
 
-    last_date = available_dates.max()
+    last_date = available_dates.max() # prendo la data più recente
 
-    caps = market_cap_matrix.loc[last_date].copy()
+    caps = market_cap_matrix.loc[last_date].copy() #estraiamo la tupla relativa alla data selezionata
     caps = caps.replace([np.inf, -np.inf], np.nan)
     caps = caps.dropna()
     caps = caps[caps > 0]
@@ -56,9 +59,9 @@ def weights_by_degree(
     Seleziona i primi x titoli per degree e pesa proporzionalmente al degree.
     """
 
-    selected = centrality.head(x).copy()
+    selected = centrality.head(x).copy() #seleziono i primi x titoli per centralità
 
-    weights = selected.set_index("Symbol")["degree"].astype(float)
+    weights = selected.set_index("Symbol")["degree"].astype(float) #creo una tabella azienda-degree
 
     return normalize_weights(weights)
 
@@ -71,6 +74,8 @@ def weights_by_market_cap_for_selected_symbols(
     Pesa per capitalizzazione solo i titoli selezionati.
     """
 
+    # controlliamo che i titoli scelti in base al MST
+    # siano nel df delle capitalizzazioni 
     available_symbols = [
         symbol for symbol in selected_symbols
         if symbol in caps.index
