@@ -14,7 +14,7 @@ Questo progetto applica quattro metodologie basate su Minimum Spanning Tree a un
 1. Metodo 1: MST sui log-rendimenti.
 2. Metodo 2: MST sui log-rendimenti simbolizzati.
 3. Metodo 3: MST su rendimenti simbolizzati e controvalore scambiato simbolizzato.
-4. Metodo 4: MST su rendimenti simbolizzati "confermati" dal controvalore scambiato.
+4. Metodo 4: MST su rendimenti simbolizzati validati dal controvalore scambiato.
 
 ## Strategie di portafoglio
 
